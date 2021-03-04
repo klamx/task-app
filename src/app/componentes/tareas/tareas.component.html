@@ -1,0 +1,60 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-sm-12 p-0">
+      <div *ngIf="id === null; else editor">
+        <input
+          type="text"
+          class="form-control col-12"
+          placeholder="Type a new task"
+          [(ngModel)]="taskInput"
+          (keyUp.enter)="addTask()"
+          autofocus
+        />
+      </div>
+      <ng-template #editor>
+        <input
+          type="text"
+          class="form-control col-12"
+          placeholder="Type a new task"
+          [(ngModel)]="taskInput"
+          (keyUp.enter)="updateTask()"
+          autofocus
+        />
+      </ng-template>
+    </div>
+    <div class="col-sm-12 mt-3" *ngIf="theresTasks(); else noTasks">
+      <ul class="list-group">
+        <li
+          class="list-group-item m-0 mb-3 d-flex justify-content-between"
+          *ngFor="let task of tasksList"
+        >
+          <span>
+            <i
+              (click)="markTask(task)"
+              [ngClass]="task.state ? 'fas fa-check-circle' : 'far fa-circle'"
+              class="text-success cursor"
+            ></i>
+          </span>
+          <span class="h5">
+            {{ task.name }}
+          </span>
+          <div>
+            <i
+              (click)="toogleEdit(task)"
+              class="far fa-edit text-danger cursor"
+            ></i>
+            <i
+              (click)="deleteTask(task)"
+              class="far fa-trash-alt text-danger cursor ml-2"
+            ></i>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <ng-template #noTasks>
+      <div class="col-sm-12 mt-4 d-flex justify-content-center">
+        <span class="alert alert-info">There is not tasks to display</span>
+      </div>
+    </ng-template>
+  </div>
+</div>

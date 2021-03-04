@@ -1,0 +1,16 @@
+.form-control {
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+i {
+  margin-top: 0.25rem;
+}
+
+.h5 {
+  margin-bottom: 0;
+}
